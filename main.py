@@ -3,7 +3,6 @@ import psycopg2
 import duckdb
 import timeit
 import statistics
-import timeit
 import json
 
 # Чтение конфигурационного файла
@@ -47,11 +46,12 @@ def execute_query_sqlite(query):
     median_time = statistics.median(query_times)
     return median_time
 
-
 for query in config["queries"]:
     query_time = execute_query_sqlite(query)
     print(f"SQLite Query: {query}")
     print(f"Median Time: {query_time} seconds")
+
+
 def execute_query_pandas(query):
     query_times = []
     for _ in range(10):
@@ -61,8 +61,6 @@ def execute_query_pandas(query):
         query_times.append(elapsed)
     median_time = statistics.median(query_times)
     return median_time
-
-
 
 for query in config["queries"]:
     query_time = execute_query_pandas(query)
